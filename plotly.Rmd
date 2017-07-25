@@ -1,0 +1,39 @@
+---
+title: "Week 3 Assignment"
+author: "Frank Pani"
+date: "July 25, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Plot Cars
+
+The data in the following chart shows the the speed of cars and the distances taken to stop.  A regression line is fitted to the data.  The data was recorded in the 1920s and is part of the R distribution packages by default.  See ?cars
+
+## Distance stopped vrs speed of car
+
+```{r, echo = FALSE, message = FALSE}
+library(plotly)
+```
+
+```{r, echo = FALSE, message = FALSE}
+
+fit <- lm(dist ~ speed, data = cars)
+
+x <- list(
+    title = "Speed"
+)
+y <- list(
+    title = "Distance"
+)
+
+plot_ly(cars, x = cars$speed, y = cars$dist, type="scatter", mode = "markers") %>% 
+  layout(xaxis = x, yaxis = y) %>% 
+  add_trace(data = cars, x = cars$speed, y = fitted(fit), mode = "lines", name="blah")
+```
+
+## Thank you
+
